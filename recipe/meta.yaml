@@ -25,9 +25,15 @@ requirements:
     - python >=3.5
     - aiohttp
     - aioslacker
+    - aiosqlite
     - arrow
+    - asyncio_redis
     - babel
+    - bleach
     - click
+    - emoji
+    - matrix-api-async
+    - motor
     - nbconvert
     - nbformat
     - pycron
@@ -42,7 +48,12 @@ test:
     - opsdroid.parsers
     - opsdroid.database
     - opsdroid.connector
+    - opsdroid.connector.facebook
+    - opsdroid.connector.github
+    - opsdroid.connector.matrix
+    - opsdroid.connector.rocketchat
     - opsdroid.connector.slack
+    - opsdroid.connector.telegram
     - opsdroid.connector.websocket
   commands:
     - opsdroid --help
