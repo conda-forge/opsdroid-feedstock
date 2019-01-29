@@ -1,5 +1,5 @@
 {% set name = "opsdroid" %}
-{% set version = "0.13.0" %}
+{% set version = "0.14.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 82f40ec060a8bf286158ed82bb93557001be5b08861a6ad5e5c216c879723b15
+  sha256: 8539f5d2d114e45c72cd41c5c87dab0cb9ee5a5881c980d54167a22df0cb341f
 
 build:
   noarch: python
