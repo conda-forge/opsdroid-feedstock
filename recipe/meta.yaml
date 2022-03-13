@@ -1,5 +1,6 @@
 {% set name = "opsdroid" %}
-{% set version = "0.13.0" %}
+{% set version = "0.19.0" %}
+
 
 package:
   name: {{ name|lower }}
@@ -7,56 +8,85 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 82f40ec060a8bf286158ed82bb93557001be5b08861a6ad5e5c216c879723b15
+  sha256: 9267309b25a6b21391247fcafc9b48632c8beeeebad7206f4d2d3f133f8d0e1f
 
 build:
-  noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  noarch: python
   entry_points:
-    - opsdroid = opsdroid.__main__:main
+    - opsdroid = opsdroid.cli:cli
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
-    - python >=3.5
     - babel
     - pip
+    - python
   run:
-    - python >=3.5
-    - aiohttp
-    - aioslacker
-    - arrow
-    - babel
-    - click
-    - nbconvert
-    - nbformat
-    - pycron
-    - pyyaml
-    - websockets
-    - appdirs
-    - multidict
+    - aiohttp ==3.6.2
+    - aioredis ==1.3.1
+    - aiosqlite ==0.13.0
+    - appdirs ==1.4.4
+    - arrow ==0.15.6
+    - babel ==2.8.0
+    - bleach ==3.1.5
+    - certifi ==2020.4.5.2
+    - click ==7.1.2
+    - emoji ==0.5.4
+    - ibm-watson ==4.4.1
+    - matrix-api-async ==0.1.0
+    - mattermostdriver ==7.0.1
+    - motor ==2.1.0
+    - multidict ==4.7.6
+    - nbconvert ==5.6.1
+    - nbformat ==5.0.6
+    - opsdroid-get-image-size ==0.2.2
+    - parse ==1.15.0
+    - puremagic ==1.9
+    - pycron ==1.0.0
+    - python
+    - pyyaml ==5.3.1
+    - regex ==2020.5.7
+    - setuptools ==46.2.0
+    - slackclient ==2.6.2
+    - tailer ==0.4.1
+    - voluptuous ==0.11.7
+    - watchgod ==0.6
+    - webexteamssdk ==1.3
+    - websockets ==8.1
 
 test:
   imports:
     - opsdroid
-    - opsdroid.parsers
-    - opsdroid.database
+    - opsdroid.cli
+    - opsdroid.configuration
     - opsdroid.connector
+    - opsdroid.connector.facebook
+    - opsdroid.connector.github
+    - opsdroid.connector.gitter
+    - opsdroid.connector.matrix
+    - opsdroid.connector.mattermost
+    - opsdroid.connector.rocketchat
+    - opsdroid.connector.shell
     - opsdroid.connector.slack
+    - opsdroid.connector.telegram
+    - opsdroid.connector.webexteams
     - opsdroid.connector.websocket
+    - opsdroid.database
+    - opsdroid.database.mongo
+    - opsdroid.database.redis
+    - opsdroid.database.sqlite
+    - opsdroid.parsers
+    - opsdroid.skill
   commands:
     - opsdroid --help
 
-
 about:
   home: https://opsdroid.github.io/
-  license: APACHE-2.0
-  license_family: APACHE
+  summary: An open source ChatOps bot framework.
+  license: Apache-2.0
   license_file: LICENSE
-  summary: 'An open source ChatOps bot framework.'
 
-  description: |
-    An open source chat bot framework written in python. It is designed to be extendable, scalable and simple.
   doc_url: https://opsdroid.readthedocs.io/
   dev_url: https://github.com/opsdroid/opsdroid
 
@@ -65,3 +95,4 @@ extra:
     - FabioRosado
     - jacobtomlinson
     - synapticarbors
+    - Cadair
